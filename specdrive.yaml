@@ -1,0 +1,6 @@
+specs:
+  - name: bdd-pbt-spec
+    source: github:bryonjacob/bdd-pbt-spec@v0.1.0
+localSpecs:
+  - specs/plugin
+strictTraceability: true

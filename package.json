@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "devDependencies": {
+    "specdrive": "^0.1.0"
+  }
+}

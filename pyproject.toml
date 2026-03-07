@@ -1,0 +1,96 @@
+[project]
+name = "pytest-bdd-property"
+version = "0.1.0"
+description = "Property-based testing plugin for pytest-bdd — express universal invariants in standard Gherkin, executed by Hypothesis"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pytest>=8.0",
+    "pytest-bdd>=7.0",
+    "hypothesis>=6.0",
+]
+keywords = ["pytest", "bdd", "property-based-testing", "gherkin", "hypothesis", "pbt"]
+license = {text = "MIT"}
+authors = [
+    {name = "pytest-bdd-property Contributors"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+]
+
+[project.urls]
+Homepage = "https://github.com/bryonjacob/pytest-bdd-property"
+Repository = "https://github.com/bryonjacob/pytest-bdd-property"
+Issues = "https://github.com/bryonjacob/pytest-bdd-property/issues"
+
+[dependency-groups]
+dev = [
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "radon>=6.0",
+    "pip-audit>=2.7",
+    "pip-licenses>=5.0",
+]
+
+[project.entry-points.pytest11]
+pytest_bdd_property = "pytest_bdd_property.plugin"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pytest_bdd_property*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::pytest.PytestUnknownMarkWarning",
+    "ignore::pytest.PytestCollectionWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+
+[[tool.mypy.overrides]]
+module = ["pytest_bdd.*", "hypothesis.*"]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["pytest_bdd_property"]
+omit = [
+    "pytest_bdd_property/__init__.py",
+    "pytest_bdd_property/types.py",
+    "pytest_bdd_property/context.py",
+]
+
+[tool.coverage.report]
+fail_under = 96
+exclude_also = [
+    # Module-level register_* calls (import-time, before coverage starts)
+    "^register_strategy\\(",
+    "^register_assumption\\(",
+    # Docstrings
+    '^\s*"""',
+]
