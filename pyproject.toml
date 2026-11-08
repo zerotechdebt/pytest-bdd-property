@@ -1,6 +1,6 @@
 [project]
 name = "pytest-bdd-property"
-version = "0.1.0"
+version = "0.1.1"
 description = "Property-based testing plugin for pytest-bdd — express universal invariants in standard Gherkin, executed by Hypothesis"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,9 +27,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/bryonjacob/pytest-bdd-property"
-Repository = "https://github.com/bryonjacob/pytest-bdd-property"
-Issues = "https://github.com/bryonjacob/pytest-bdd-property/issues"
+Homepage = "https://github.com/zerotechdebt/pytest-bdd-property"
+Repository = "https://github.com/zerotechdebt/pytest-bdd-property"
+Issues = "https://github.com/zerotechdebt/pytest-bdd-property/issues"
 
 [dependency-groups]
 dev = [

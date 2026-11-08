@@ -19,7 +19,7 @@ Example feature:
         Then <Q> does not verify against <H>
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from pytest_bdd_property.assumptions import (
     parse_assumption,

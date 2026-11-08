@@ -13,7 +13,7 @@ Thank you for your interest in contributing to pytest-bdd-property.
 ### Install
 
 ```bash
-git clone https://github.com/bryonjacob/pytest-bdd-property.git
+git clone https://github.com/zerotechdebt/pytest-bdd-property.git
 cd pytest-bdd-property
 uv sync --group dev
 ```
