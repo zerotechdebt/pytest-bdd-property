@@ -86,6 +86,31 @@ specdrive:
 check-all: format lint typecheck specdrive
     @echo "All checks passed"
 
+# Read-only checks, same as check-all but without auto-fixing (used by GitHub CI)
+ci:
+    uv run ruff check .
+    uv run ruff format --check .
+    uv run mypy pytest_bdd_property
+    just specdrive
+
+# Tag the current version and push the tag; GitHub publishes it to PyPI (see RELEASING.md)
+release:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    version=$(uv version --short)
+    tag="v${version}"
+    [ "$(git branch --show-current)" = "main" ] || { echo "Release from main"; exit 1; }
+    [ -z "$(git status --porcelain)" ] || { echo "Working tree not clean"; exit 1; }
+    git fetch -q origin main --tags
+    [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] || { echo "main is not in sync with origin/main"; exit 1; }
+    grep -q "__version__ = \"${version}\"" pytest_bdd_property/__init__.py || { echo "__init__.py __version__ != ${version}"; exit 1; }
+    grep -q "^## \[${version}\]" CHANGELOG.md || { echo "CHANGELOG.md has no entry for ${version}"; exit 1; }
+    ! git rev-parse -q --verify "refs/tags/${tag}" >/dev/null || { echo "Tag ${tag} already exists"; exit 1; }
+    just ci
+    git tag -a "${tag}" -m "${tag}"
+    git push origin "${tag}"
+    echo "Pushed ${tag}. Watch: gh run watch \$(gh run list --workflow release.yml --limit 1 --json databaseId -q '.[0].databaseId')"
+
 # Remove generated files and artifacts
 clean:
     rm -rf .venv __pycache__ .pytest_cache .mypy_cache .coverage htmlcov dist build *.egg-info .ruff_cache test-results.xml

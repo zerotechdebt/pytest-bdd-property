@@ -17,7 +17,6 @@ node_modules/
 .specdrive/
 specs/_specdrive/
 .stipulate/
-uv.lock
 .DS_Store
 .vscode/
 .idea/

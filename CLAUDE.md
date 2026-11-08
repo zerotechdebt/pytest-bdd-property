@@ -62,6 +62,10 @@ python -m pytest tests/plugin/            # Plugin unit tests only
 python -m pytest --junitxml=test-results.xml  # With JUnit XML output
 ```
 
+`just check-all` runs everything locally (auto-fixes formatting). `just ci` is the read-only version GitHub CI runs. On a fresh clone, fetch the shared specs first: `pnpm install && pnpm exec specdrive install` (`specs/_specdrive/` is not committed).
+
+Releasing: see RELEASING.md (`just release` tags; GitHub Actions publishes to PyPI).
+
 Note: `specdrive verify` requires RID->JUnit bridging. Run `specdrive init` in the project to set that up.
 
 ## Public API
