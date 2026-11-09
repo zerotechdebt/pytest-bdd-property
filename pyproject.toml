@@ -1,6 +1,6 @@
 [project]
 name = "pytest-bdd-property"
-version = "0.1.1"
+version = "0.1.2"
 description = "Property-based testing plugin for pytest-bdd — express universal invariants in standard Gherkin, executed by Hypothesis"
 readme = "README.md"
 requires-python = ">=3.11"
