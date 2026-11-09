@@ -36,7 +36,9 @@ https://pypi.org/project/pytest-bdd-property/.
   re-run the failed jobs from the Actions page. PyPI never accepts the same
   version twice, so if anything did upload, bump to the next patch version.
 
-## One-time setup (already done unless noted)
+## One-time setup (both done as of 2026-11-09)
+
+Only needed again if the repo or workflow file is renamed or moved.
 
 - **PyPI trusted publisher.** On https://pypi.org/manage/project/pytest-bdd-property/settings/publishing/
   add a GitHub publisher with owner `zerotechdebt`, repository

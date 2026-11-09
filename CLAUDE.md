@@ -64,9 +64,22 @@ python -m pytest --junitxml=test-results.xml  # With JUnit XML output
 
 `just check-all` runs everything locally (auto-fixes formatting). `just ci` is the read-only version GitHub CI runs. On a fresh clone, fetch the shared specs first: `pnpm install && pnpm exec specdrive install` (`specs/_specdrive/` is not committed).
 
-Releasing: see RELEASING.md (`just release` tags; GitHub Actions publishes to PyPI).
-
 Note: `specdrive verify` requires RID->JUnit bridging. Run `specdrive init` in the project to set that up.
+
+## Releasing
+
+GitHub Actions publishes to PyPI when a `v*` tag is pushed, using trusted publishing (no token). Full reference, including failure recovery and the manual fallback: RELEASING.md.
+
+1. Bump `version` in `pyproject.toml`.
+2. Add a `## [X.Y.Z] - YYYY-MM-DD` entry to `CHANGELOG.md`.
+3. Commit, push to `main`, and wait for CI to pass.
+4. Run `just release`. It checks, tags and pushes; the Release workflow does the rest.
+
+Rules:
+
+- The version lives only in `pyproject.toml`. Don't edit `__version__`; it is read from package metadata.
+- Don't build and `twine upload` by hand. Pushing the tag is the release. The manual fallback is only for when GitHub Actions is down.
+- PyPI never accepts the same version twice. If anything uploaded, fix forward with the next patch version; don't retag.
 
 ## Public API
 
