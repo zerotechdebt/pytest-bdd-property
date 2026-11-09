@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - CI now uses the locked tool versions (`uv.lock` is committed), fetches the shared specs, and runs the same checks as `just check-all`
 - Releases are published to PyPI by GitHub Actions when a version tag is pushed (`just release`; see RELEASING.md)
+- `__version__` is read from the installed package metadata, so the version only lives in `pyproject.toml`
+- README shows CI, PyPI version and Python version badges
 
 ## [0.1.1] - 2026-11-08
 

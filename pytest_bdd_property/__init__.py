@@ -19,7 +19,8 @@ Example feature:
         Then <Q> does not verify against <H>
 """
 
-__version__ = "0.1.1"
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _version
 
 from pytest_bdd_property.assumptions import (
     parse_assumption,
@@ -45,3 +46,8 @@ __all__ = [
     "property_then",
     "run_property_test",
 ]
+
+try:
+    __version__ = _version("pytest-bdd-property")
+except PackageNotFoundError:  # source tree that isn't installed
+    __version__ = "0.0.0+unknown"

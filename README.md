@@ -1,5 +1,9 @@
 # pytest-bdd-property
 
+[![CI](https://github.com/zerotechdebt/pytest-bdd-property/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/zerotechdebt/pytest-bdd-property/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/pytest-bdd-property)](https://pypi.org/project/pytest-bdd-property/)
+[![Python versions](https://img.shields.io/pypi/pyversions/pytest-bdd-property)](https://pypi.org/project/pytest-bdd-property/)
+
 Property-based testing for Gherkin scenarios, powered by [Hypothesis](https://hypothesis.readthedocs.io/).
 
 Express universal invariants in standard Gherkin, and have Hypothesis generate 100+ inputs to find counterexamples automatically.

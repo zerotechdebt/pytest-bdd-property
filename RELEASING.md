@@ -6,15 +6,14 @@ uses PyPI trusted publishing.
 
 ## Steps
 
-1. On `main`, bump the version in **both** places:
-   - `pyproject.toml` → `version = "X.Y.Z"`
-   - `pytest_bdd_property/__init__.py` → `__version__ = "X.Y.Z"`
+1. On `main`, bump `version = "X.Y.Z"` in `pyproject.toml`. That's the only
+   place the version lives; `__version__` reads it from the installed package.
 2. Add a `## [X.Y.Z] - YYYY-MM-DD` section to `CHANGELOG.md`.
 3. Commit and push to `main`, and wait for CI to pass.
 4. Run `just release`.
 
 `just release` refuses to run unless you are on `main`, the tree is clean and
-in sync with `origin/main`, both version strings and the CHANGELOG agree, and
+in sync with `origin/main`, the CHANGELOG has an entry for the version, and
 the tag doesn't exist yet. It then runs `just ci`, creates the `vX.Y.Z` tag
 and pushes it.
 
