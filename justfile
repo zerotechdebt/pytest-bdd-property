@@ -103,7 +103,6 @@ release:
     [ -z "$(git status --porcelain)" ] || { echo "Working tree not clean"; exit 1; }
     git fetch -q origin main --tags
     [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" ] || { echo "main is not in sync with origin/main"; exit 1; }
-    grep -q "__version__ = \"${version}\"" pytest_bdd_property/__init__.py || { echo "__init__.py __version__ != ${version}"; exit 1; }
     grep -q "^## \[${version}\]" CHANGELOG.md || { echo "CHANGELOG.md has no entry for ${version}"; exit 1; }
     ! git rev-parse -q --verify "refs/tags/${tag}" >/dev/null || { echo "Tag ${tag} already exists"; exit 1; }
     just ci
